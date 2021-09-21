@@ -1,6 +1,10 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     kotlin("android")
+    kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -46,7 +50,12 @@ dependencies {
     implementation (Config.AndroidXLibs.MATERIAL)
     implementation (Config.AndroidXLibs.APP_COMPAT)
     implementation (Config.AndroidXLibs.ANDROIDX_CORE)
+    implementation (Config.DI.HILT)
+    kapt (Config.DI.HILT_COMPILER)
     testImplementation (Config.TestLibs.JUNIT)
     androidTestImplementation (Config.TestLibs.ANDROIDX_TEST_EXT)
     androidTestImplementation (Config.TestLibs.ESPRESSO_CORE)
+}
+kapt {
+    correctErrorTypes = true
 }
