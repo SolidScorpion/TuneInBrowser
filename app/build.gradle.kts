@@ -1,0 +1,52 @@
+plugins {
+    id("com.android.application")
+    kotlin("android")
+}
+
+android {
+    compileSdk = Config.Versions.COMPILE_SDK
+
+    buildFeatures {
+        viewBinding = true
+    }
+
+    defaultConfig {
+        applicationId = "com.apripachkin.tuneinbrowser"
+        minSdk = Config.Versions.MINSDK
+        targetSdk = Config.Versions.TARGET_SDK
+        versionCode = 1
+        versionName = "1.0"
+
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        getByName("release") {
+            isMinifyEnabled = true
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            applicationIdSuffix = ".dev"
+            versionNameSuffix = "-DEV"
+            isDebuggable = true
+            isMinifyEnabled = false
+        }
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation (Config.AndroidXLibs.CONSTRAINT_LAYOUT)
+    implementation (Config.AndroidXLibs.MATERIAL)
+    implementation (Config.AndroidXLibs.APP_COMPAT)
+    implementation (Config.AndroidXLibs.ANDROIDX_CORE)
+    testImplementation (Config.TestLibs.JUNIT)
+    androidTestImplementation (Config.TestLibs.ANDROIDX_TEST_EXT)
+    androidTestImplementation (Config.TestLibs.ESPRESSO_CORE)
+}

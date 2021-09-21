@@ -7,4 +7,4 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "TuneInBrowser"
-include ':app'
+include (":app")
