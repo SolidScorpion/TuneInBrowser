@@ -57,6 +57,7 @@ dependencies {
     implementation (Config.ToolLibs.ANDROID_COROUTINES)
     implementation (Config.ToolLibs.EXO_PLAYER)
     implementation (Config.ToolLibs.GLIDE)
+    debugImplementation(Config.ToolLibs.LEAK_CANARY)
     annotationProcessor(Config.ToolLibs.GLIDE_PROCESSOR)
     implementation (Config.DI.HILT)
     kapt (Config.DI.HILT_COMPILER)

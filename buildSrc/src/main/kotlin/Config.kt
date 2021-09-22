@@ -19,6 +19,7 @@ object Config {
         const val LIFECYCLE_VERSION = "2.4.0-beta01"
         const val GLIDE_VERSION = "4.12.0"
         const val NAV_COMPONENT_VERSION = "2.3.5"
+        const val LEAK_CANARY_VERSION = "2.6"
     }
 
     object PluginLibs {
@@ -51,6 +52,7 @@ object Config {
             "com.google.android.exoplayer:exoplayer:${Versions.EXO_PLAYER_VERSION}"
         const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
         const val GLIDE_PROCESSOR = "com.github.bumptech.glide:compiler:${Versions.GLIDE_VERSION}"
+        const val LEAK_CANARY = "com.squareup.leakcanary:leakcanary-android:${Versions.LEAK_CANARY_VERSION}"
     }
 
     object DI {
