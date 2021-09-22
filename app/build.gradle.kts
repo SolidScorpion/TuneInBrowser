@@ -5,6 +5,7 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     id("dagger.hilt.android.plugin")
+    id("kotlin-android")
 }
 
 android {
@@ -51,13 +52,17 @@ dependencies {
     implementation (Config.AndroidXLibs.APP_COMPAT)
     implementation (Config.AndroidXLibs.ANDROIDX_CORE)
     implementation (Config.AndroidXLibs.VIEW_MODEL)
+    implementation (Config.AndroidXLibs.LIFECYCLE)
+    implementation (Config.AndroidXLibs.FRAGMENT_KTX)
     implementation (Config.AndroidXLibs.NAV_COMPONENT)
     implementation (Config.AndroidXLibs.NAV_COMPONENT_UI)
     implementation (Config.ToolLibs.RETROFIT)
     implementation (Config.ToolLibs.ANDROID_COROUTINES)
     implementation (Config.ToolLibs.EXO_PLAYER)
     implementation (Config.ToolLibs.GLIDE)
+    implementation (Config.ToolLibs.RETROFIT_CONVERTER)
     debugImplementation(Config.ToolLibs.LEAK_CANARY)
+    implementation(Config.ToolLibs.TIMBER)
     annotationProcessor(Config.ToolLibs.GLIDE_PROCESSOR)
     implementation (Config.DI.HILT)
     kapt (Config.DI.HILT_COMPILER)

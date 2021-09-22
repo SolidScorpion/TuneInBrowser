@@ -3,7 +3,7 @@ object Config {
         const val COROUTINE_VERSION = "1.5.1"
         const val MINSDK = 24
         const val TARGET_SDK = 30
-        const val COMPILE_SDK = 30
+        const val COMPILE_SDK = 31
         const val JUNIT_VERSION = "4.13.2"
         const val CONSTRAINT_LAYOUT_VERSION = "2.1.0"
         const val MATERIAL_VERSION = "1.4.0"
@@ -12,7 +12,7 @@ object Config {
         const val TEST_EXT_VERSION = "1.1.3"
         const val ESPRESSO_VERSION = "3.4.0"
         const val GRADLE_VERSION = "7.0.2"
-        const val KOTLIN_VERSION = "1.5.30"
+        const val KOTLIN_VERSION = "1.5.31"
         const val HILT_VERSION = "2.38.1"
         const val RETROFIT_VERSION = "2.9.0"
         const val EXO_PLAYER_VERSION = "2.15.0"
@@ -20,6 +20,10 @@ object Config {
         const val GLIDE_VERSION = "4.12.0"
         const val NAV_COMPONENT_VERSION = "2.3.5"
         const val LEAK_CANARY_VERSION = "2.6"
+        const val FRAGMENT_VERSION = "1.3.6"
+        const val TIMBER_VERSION = "5.0.1"
+        const val KOTLINX_SERIALIZATION = "1.0.1"
+        const val MOSHI_CONVERTER = "2.9.0"
     }
 
     object PluginLibs {
@@ -37,11 +41,13 @@ object Config {
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT_VERSION}"
         const val ANDROIDX_CORE = "androidx.core:core-ktx:${Versions.ANDROIDX_CORE_VERSION}"
         const val VIEW_MODEL =
-            "androidx.lifecycle:lifecycle-viewmodel:${Versions.LIFECYCLE_VERSION}"
+            "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.LIFECYCLE_VERSION}"
         const val NAV_COMPONENT =
             "androidx.navigation:navigation-fragment:${Versions.NAV_COMPONENT_VERSION}"
         const val NAV_COMPONENT_UI =
             "androidx.navigation:navigation-ui:${Versions.NAV_COMPONENT_VERSION}"
+        const val LIFECYCLE = "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.LIFECYCLE_VERSION}"
+        const val FRAGMENT_KTX = "androidx.fragment:fragment-ktx:${Versions.FRAGMENT_VERSION}"
     }
 
     object ToolLibs {
@@ -53,6 +59,8 @@ object Config {
         const val GLIDE = "com.github.bumptech.glide:glide:${Versions.GLIDE_VERSION}"
         const val GLIDE_PROCESSOR = "com.github.bumptech.glide:compiler:${Versions.GLIDE_VERSION}"
         const val LEAK_CANARY = "com.squareup.leakcanary:leakcanary-android:${Versions.LEAK_CANARY_VERSION}"
+        const val TIMBER = "com.jakewharton.timber:timber:${Versions.TIMBER_VERSION}"
+        const val RETROFIT_CONVERTER =  "com.squareup.retrofit2:converter-moshi:${Versions.MOSHI_CONVERTER}"
     }
 
     object DI {
