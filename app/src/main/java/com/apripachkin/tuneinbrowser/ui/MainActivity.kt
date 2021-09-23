@@ -1,19 +1,22 @@
-package com.apripachkin.tuneinbrowser
+package com.apripachkin.tuneinbrowser.ui
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
-import com.apripachkin.tuneinbrowser.data.TuneInBrowserService
+import com.apripachkin.tuneinbrowser.R
 import com.apripachkin.tuneinbrowser.databinding.ActivityMainBinding
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_TuneInLight)
         super.onCreate(savedInstanceState)
-        val activityMainBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(activityMainBinding.root)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+    }
+
+    fun updateTitle(title: String) {
+        binding.toolbar.toolbarTitle.text = title
     }
 }

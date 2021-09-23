@@ -2,7 +2,7 @@ package com.apripachkin.tuneinbrowser.di.modules
 
 import android.content.Context
 import com.apripachkin.tuneinbrowser.R
-import com.apripachkin.tuneinbrowser.data.TuneInBrowserService
+import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import com.apripachkin.tuneinbrowser.di.JsonRendererInterceptor
 import dagger.Module
 import dagger.Provides
@@ -34,7 +34,7 @@ object NetworkModule {
     fun provideOkHttpClient(jsonRendererInterceptor: JsonRendererInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(jsonRendererInterceptor)
-            .connectTimeout(2, TimeUnit.SECONDS)
+            .connectTimeout(4, TimeUnit.SECONDS)
             .build()
     }
 }

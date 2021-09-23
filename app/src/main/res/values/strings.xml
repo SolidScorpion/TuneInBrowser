@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TuneInBrowser</string>
     <string name="base_url">http://opml.radiotime.com</string>
+    <string name="home_screen_title">Choose category</string>
 </resources>
