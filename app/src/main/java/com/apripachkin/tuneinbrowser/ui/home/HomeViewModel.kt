@@ -2,9 +2,10 @@ package com.apripachkin.tuneinbrowser.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.apripachkin.tuneinbrowser.data.Outline
 import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import com.apripachkin.tuneinbrowser.di.modules.Dispatcher
-import com.apripachkin.tuneinbrowser.domain.ApiResponse
+import com.apripachkin.tuneinbrowser.domain.UiState
 import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
@@ -19,7 +20,7 @@ class HomeViewModel @Inject constructor(
     private val service: TuneInBrowserService,
     @Dispatcher.IO private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    val currentData = MutableStateFlow<ApiResponse>(Loading)
+    val currentData = MutableStateFlow<UiState<List<Outline>>>(Loading)
 
     init {
         fetchData()

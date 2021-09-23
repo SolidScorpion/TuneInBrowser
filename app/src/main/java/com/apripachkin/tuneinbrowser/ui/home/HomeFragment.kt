@@ -31,13 +31,13 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        (activity as? MainActivity)?.updateTitle(getString(R.string.home_screen_title))
         binding.homeCategoryPager.adapter = CategoryAdapter {
             Timber.d("Clicked on $it")
         }
-        (activity as? MainActivity)?.updateTitle(getString(R.string.home_screen_title))
         binding.homeCategoryPager.setPageTransformer(ZoomOutPageTransformer())
-        TabLayoutMediator(binding.tabLayout, binding.homeCategoryPager) { tab, position ->
-        }.attach()
+        TabLayoutMediator(binding.tabLayout, binding.homeCategoryPager){_, _ -> }.attach()
+
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.currentData.collect {
@@ -49,7 +49,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
                             binding.progressCircleIndeterminate.show()
                         }
                         is Success -> {
-                            (binding.homeCategoryPager.adapter as CategoryAdapter).updateItems(it.items)
+                            (binding.homeCategoryPager.adapter as CategoryAdapter).updateItems(it.value)
                             binding.progressCircleIndeterminate.hide()
                         }
                     }
