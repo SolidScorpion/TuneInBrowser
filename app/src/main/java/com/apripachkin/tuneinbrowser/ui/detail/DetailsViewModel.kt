@@ -16,6 +16,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -26,6 +27,7 @@ class DetailsViewModel @Inject constructor(
     private val dataFlow = MutableStateFlow<UiState<TuneInResponse>>(Loading)
     val data: Flow<UiState<TuneInResponse>> = dataFlow
     fun loadData(url: String) {
+        Timber.d("Loading $url")
         viewModelScope.launch(dispatcher) {
             try {
                 val customUrl = service.customUrl(url)
@@ -40,6 +42,7 @@ class DetailsViewModel @Inject constructor(
                 }
                 dataFlow.emit(Success(customUrl.copy(body = resultList)))
             } catch (e: Exception) {
+                Timber.e(e)
                 dataFlow.emit(Fail)
             }
         }

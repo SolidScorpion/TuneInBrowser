@@ -34,8 +34,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/image_guidline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="?attr/colorPrimary" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/audio_item_header_tv"

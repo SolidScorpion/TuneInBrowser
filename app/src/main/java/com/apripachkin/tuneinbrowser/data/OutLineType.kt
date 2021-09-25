@@ -28,7 +28,7 @@ data class AudioOutLine(
     val reliability: Int,
     val subtext: String,
     val formats: String,
-    val playing: String,
+    val playing: String?,
     val playing_image: String?,
     val item: String,
     val image: String

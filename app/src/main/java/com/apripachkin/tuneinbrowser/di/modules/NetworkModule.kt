@@ -39,7 +39,7 @@ object NetworkModule {
     fun provideOkHttpClient(jsonRendererInterceptor: JsonRendererInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(jsonRendererInterceptor)
-            .connectTimeout(4, TimeUnit.SECONDS)
+            .connectTimeout(6, TimeUnit.SECONDS)
             .build()
     }
 }
