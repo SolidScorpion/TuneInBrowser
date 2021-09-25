@@ -49,12 +49,8 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.data.collect {
                     when (it) {
-                        Fail -> {
-                            binding.progressCircleIndeterminate.hide()
-                        }
-                        Loading -> {
-                            binding.progressCircleIndeterminate.show()
-                        }
+                        Fail -> binding.progressCircleIndeterminate.hide()
+                        Loading -> binding.progressCircleIndeterminate.show()
                         is Success -> {
                             (binding.homeCategoryPager.adapter as CategoryAdapter).updateItems(it.value)
                             binding.progressCircleIndeterminate.hide()
