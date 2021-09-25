@@ -24,6 +24,7 @@ import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 import com.apripachkin.tuneinbrowser.domain.models.TextItem
 import com.apripachkin.tuneinbrowser.ui.ImageLoader
 import com.apripachkin.tuneinbrowser.ui.MainActivity
+import com.apripachkin.tuneinbrowser.ui.audio.AudioFragment
 import com.apripachkin.tuneinbrowser.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -43,30 +44,49 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
         super.onViewCreated(view, savedInstanceState)
         val link = arguments?.getString(LINK) ?: error("Did not receive argument")
         viewModel.loadData(link)
+        binding.detailsRefresh.setOnRefreshListener {
+            viewModel.loadData(link)
+        }
         val outLineItemAdapter = OutLineItemAdapter(imageLoader = imageLoader) {
             Timber.d("Clicked $it")
-            val url = when (it) {
-                is AudioItem -> it.url
-                is LinkItem -> it.url
-                is HeaderItem -> it.moreItemsLink
-                is TextItem -> null
-            }
-            url?.also { link ->
+            if (it is AudioItem) {
                 findNavController(this).navigate(
-                    R.id.action_global_detailFragment, bundleOf(
-                        LINK to link
+                    R.id.action_detailFragment_to_audioFragment, bundleOf(
+                        AudioFragment.AUDIO_LINK to it
                     )
                 )
+            } else {
+                val url = when (it) {
+                    is LinkItem -> it.url
+                    is HeaderItem -> it.moreItemsLink
+                    else -> null
+                }
+                url?.also { link ->
+                    findNavController(this).navigate(
+                        R.id.action_global_detailFragment, bundleOf(
+                            LINK to link
+                        )
+                    )
+                }
             }
         }
+        outLineItemAdapter.setHasStableIds(true)
         binding.detailsRv.adapter = outLineItemAdapter
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.data.collect {
                     when (it) {
-                        Fail -> Timber.d("Failed")
-                        Loading -> Timber.d("Loading")
+                        Fail -> {
+                            stopSwipeRefresh()
+                            Timber.d("Failed")
+                        }
+                        Loading -> {
+                            if (!binding.detailsRefresh.isRefreshing) {
+                                binding.detailsRefresh.isRefreshing = true
+                            }
+                        }
                         is Success -> {
+                            stopSwipeRefresh()
                             val title = it.value.title ?: ""
                             (requireActivity() as MainActivity).updateTitle(title)
                             outLineItemAdapter.updateData(it.value.listItems)
@@ -76,6 +96,11 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
             }
         }
 
+    }
+    private fun stopSwipeRefresh() {
+        if (binding.detailsRefresh.isRefreshing) {
+            binding.detailsRefresh.isRefreshing = false
+        }
     }
 
     companion object {

@@ -75,13 +75,13 @@ class OutLineResponseAdapter : JsonAdapter<OutLineType>() {
             requireNotNull(map["type"]),
             requireNotNull(map["text"]),
             requireNotNull(map["URL"]),
-            requireNotNull(map["bitrate"]).toInt(),
-            requireNotNull(map["reliability"]).toInt(),
+            map["bitrate"]?.toInt(),
+            map["reliability"]?.toInt(),
             requireNotNull(map["subtext"]),
-            requireNotNull(map["formats"]),
+            map["formats"],
             map["playing"],
             map["playing_image"],
-            requireNotNull(map["item"]),
+            map["item"],
             requireNotNull(map["image"])
         )
     }

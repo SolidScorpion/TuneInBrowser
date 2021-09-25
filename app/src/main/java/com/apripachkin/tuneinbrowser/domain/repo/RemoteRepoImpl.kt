@@ -1,5 +1,6 @@
 package com.apripachkin.tuneinbrowser.domain.repo
 
+import com.apripachkin.tuneinbrowser.data.AudioResponse
 import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import javax.inject.Inject
 
@@ -8,4 +9,5 @@ class RemoteRepoImpl @Inject constructor(
 ) : RemoteRepository {
     override suspend fun loadBaseData() = service.basePage()
     override suspend fun loadDataFromUrl(url: String) = service.customUrl(url)
+    override suspend fun loadAudioUrl(url: String): AudioResponse = service.audioUrl(url)
 }

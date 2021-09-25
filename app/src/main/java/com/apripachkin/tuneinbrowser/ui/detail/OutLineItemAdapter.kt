@@ -1,5 +1,6 @@
 package com.apripachkin.tuneinbrowser.ui.detail
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -74,6 +75,10 @@ class OutLineItemAdapter(
         }
     }
 
+    override fun getItemId(position: Int): Long {
+        return items[position].hashCode().toLong()
+    }
+
     override fun getItemViewType(position: Int): Int {
         return items[position].itemId
     }
@@ -95,9 +100,11 @@ class OutLineItemAdapter(
     }
 
     override fun getItemCount() = items.size
+
+    @SuppressLint("NotifyDataSetChanged")
     fun updateData(body: List<UiItem>) {
         items.clear()
         items.addAll(body)
-        notifyItemRangeChanged(0, body.size)
+        notifyDataSetChanged()
     }
 }

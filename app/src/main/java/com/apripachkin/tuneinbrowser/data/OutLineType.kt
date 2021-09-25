@@ -24,13 +24,13 @@ data class AudioOutLine(
     val type: String,
     val text: String,
     val URL: String,
-    val bitrate: Int,
-    val reliability: Int,
+    val bitrate: Int?,
+    val reliability: Int?,
     val subtext: String,
-    val formats: String,
+    val formats: String?,
     val playing: String?,
     val playing_image: String?,
-    val item: String,
+    val item: String?,
     val image: String
 ) : OutLineType() {
     override val itemId: Int

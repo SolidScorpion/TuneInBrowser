@@ -20,6 +20,7 @@ import java.util.concurrent.TimeUnit
 @Module
 @InstallIn(SingletonComponent::class)
 object NetworkModule {
+
     @Provides
     fun provideRetrofit(
         @ApplicationContext context: Context,

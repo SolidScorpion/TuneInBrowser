@@ -9,28 +9,31 @@
         android:id="@+id/homeFragment"
         android:name="com.apripachkin.tuneinbrowser.ui.home.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment" >
+        tools:layout="@layout/home_fragment">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
-            app:destination="@id/detailFragment"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:destination="@id/detailFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.apripachkin.tuneinbrowser.ui.detail.DetailFragment"
-        android:label="DetailFragment" >
+        android:label="DetailFragment">
         <argument
             android:name="link"
             app:argType="string" />
+        <action
+            android:id="@+id/action_detailFragment_to_audioFragment"
+            app:destination="@id/audioFragment" />
     </fragment>
     <action
         android:id="@+id/action_global_detailFragment"
-        app:destination="@id/detailFragment"
-        app:enterAnim="@anim/nav_default_enter_anim"
-        app:exitAnim="@anim/nav_default_exit_anim"
-        app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-        app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        app:destination="@id/detailFragment" />
+    <fragment
+        android:id="@+id/audioFragment"
+        android:name="com.apripachkin.tuneinbrowser.ui.audio.AudioFragment"
+        android:label="AudioFragment">
+        <argument
+            android:name="audio_link"
+            app:argType="com.apripachkin.tuneinbrowser.domain.models.AudioItem" />
+    </fragment>
 </navigation>

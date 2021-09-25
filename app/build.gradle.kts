@@ -62,6 +62,7 @@ dependencies {
     implementation (Config.ToolLibs.EXO_PLAYER)
     implementation (Config.ToolLibs.GLIDE)
     implementation (Config.ToolLibs.RETROFIT_CONVERTER)
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     debugImplementation(Config.ToolLibs.LEAK_CANARY)
     implementation(Config.ToolLibs.TIMBER)
     annotationProcessor(Config.ToolLibs.GLIDE_PROCESSOR)

@@ -12,8 +12,11 @@ import com.apripachkin.tuneinbrowser.domain.models.UiData
 import com.apripachkin.tuneinbrowser.domain.models.UiItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.consumeAsFlow
+import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -35,6 +38,12 @@ class DetailsViewModel @Inject constructor(
                 Timber.e(e)
                 dataFlow.emit(Fail)
             }
+        }
+    }
+    fun loadAudioContent(url: String) {
+        viewModelScope.launch(dispatcher) {
+            val loadAudioUrl = interactor.loadAudioUrl(url)
+            Timber.d("Received audio url: $loadAudioUrl")
         }
     }
 }
