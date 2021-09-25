@@ -31,7 +31,7 @@ class UiItemMapper @Inject constructor() {
             }
             is HeaderOutLine -> {
                 val partition = outline.children.partition {
-                    it is AudioOutLine || it is LinkOutLine && it.key == null
+                    it is AudioOutLine || isChildLinkItem(it)
                 }
                 val mappedItems = partition.first.map { item ->
                     when (item) {
@@ -56,6 +56,10 @@ class UiItemMapper @Inject constructor() {
             }
         }
     }
+
+    private fun isChildLinkItem(
+        outLine: OutLineType,
+    ) = outLine is LinkOutLine && (outLine.key == null || !outLine.key.startsWith("next"))
 
     private fun convertToAudio(outline: AudioOutLine) = AudioItem(
         outline.text,
