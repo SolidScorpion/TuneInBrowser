@@ -13,7 +13,6 @@ class ImageLoaderImpl @Inject constructor(): ImageLoader {
         Glide.with(imageView)
             .load(url)
             .transition(withCrossFade())
-            .centerCrop()
             .into(imageView)
     }
 

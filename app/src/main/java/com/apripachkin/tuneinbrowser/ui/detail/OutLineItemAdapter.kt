@@ -55,12 +55,8 @@ class OutLineItemAdapter(
 
         private fun bindAudioItem(bindItem: AudioOutLine) {
             val audioItemLayoutBinding = binding as AudioItemLayoutBinding
-            val playingImage = bindItem.playing_image
-            if (playingImage != null) {
-                imageLoader.loadImageInto(audioItemLayoutBinding.cardImage, playingImage)
-            } else {
-                imageLoader.clearImageView(audioItemLayoutBinding.cardImage)
-            }
+            val playingImage = bindItem.image
+            imageLoader.loadImageInto(audioItemLayoutBinding.cardImage, playingImage)
             audioItemLayoutBinding.audioItemHeaderTv.text = bindItem.text
             audioItemLayoutBinding.audioItemSubHeaderTv.text = bindItem.playing
         }
