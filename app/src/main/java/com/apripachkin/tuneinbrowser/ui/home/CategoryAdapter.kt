@@ -13,8 +13,9 @@ class CategoryAdapter(
 ) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
-    class ViewHolder(val binding: InitialCategoryCardBinding,
-                     onClick: (LinkOutLine) -> Unit) :
+    class ViewHolder(
+        private val binding: InitialCategoryCardBinding,
+        onClick: (LinkOutLine) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
         private var item: LinkOutLine? = null
         init {

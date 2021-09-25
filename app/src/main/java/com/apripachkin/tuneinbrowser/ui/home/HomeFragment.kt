@@ -2,6 +2,7 @@ package com.apripachkin.tuneinbrowser.ui.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -9,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.apripachkin.tuneinbrowser.R
 import com.apripachkin.tuneinbrowser.databinding.HomeFragmentBinding
@@ -16,6 +18,7 @@ import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.ui.MainActivity
+import com.apripachkin.tuneinbrowser.ui.detail.DetailFragment
 import com.apripachkin.tuneinbrowser.utils.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,14 +37,17 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         (activity as? MainActivity)?.updateTitle(getString(R.string.home_screen_title))
         binding.homeCategoryPager.adapter = CategoryAdapter {
             Timber.d("Clicked on $it")
-            viewModel.fetchResponce(it.URL)
+            findNavController(this).navigate(
+                R.id.action_homeFragment_to_detailFragment,
+                bundleOf(DetailFragment.LINK to it.URL)
+            )
         }
         binding.homeCategoryPager.setPageTransformer(ZoomOutPageTransformer())
-        TabLayoutMediator(binding.tabLayout, binding.homeCategoryPager){_, _ -> }.attach()
+        TabLayoutMediator(binding.tabLayout, binding.homeCategoryPager) { _, _ -> }.attach()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.currentData.collect {
+                viewModel.data.collect {
                     when (it) {
                         Fail -> {
                             binding.progressCircleIndeterminate.hide()

@@ -12,6 +12,7 @@ import com.apripachkin.tuneinbrowser.domain.Success
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
@@ -21,8 +22,8 @@ class HomeViewModel @Inject constructor(
     private val service: TuneInBrowserService,
     @Dispatcher.IO private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    val currentData = MutableStateFlow<UiState<List<LinkOutLine>>>(Loading)
-
+    private val currentData = MutableStateFlow<UiState<List<LinkOutLine>>>(Loading)
+    val data: StateFlow<UiState<List<LinkOutLine>>> = currentData
     init {
         fetchData()
     }
