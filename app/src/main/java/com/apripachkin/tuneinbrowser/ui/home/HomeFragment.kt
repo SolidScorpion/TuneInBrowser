@@ -34,6 +34,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
         (activity as? MainActivity)?.updateTitle(getString(R.string.home_screen_title))
         binding.homeCategoryPager.adapter = CategoryAdapter {
             Timber.d("Clicked on $it")
+            viewModel.fetchResponce(it.URL)
         }
         binding.homeCategoryPager.setPageTransformer(ZoomOutPageTransformer())
         TabLayoutMediator(binding.tabLayout, binding.homeCategoryPager){_, _ -> }.attach()

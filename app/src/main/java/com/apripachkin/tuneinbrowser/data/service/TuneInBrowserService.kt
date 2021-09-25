@@ -1,9 +1,13 @@
 package com.apripachkin.tuneinbrowser.data.service
 
-import com.apripachkin.tuneinbrowser.data.Response
+import com.apripachkin.tuneinbrowser.data.TuneInResponse
 import retrofit2.http.GET
+import retrofit2.http.Url
 
 interface TuneInBrowserService {
     @GET("/")
-    suspend fun basePage() : Response
+    suspend fun basePage() : TuneInResponse
+
+    @GET
+    suspend fun customUrl(@Url endpoint: String): TuneInResponse
 }

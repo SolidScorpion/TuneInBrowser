@@ -1,6 +1,6 @@
 package com.apripachkin.tuneinbrowser.data
 
-data class Response(
+data class TuneInResponse(
     val head: Head,
-    val body: List<Outline>
+    val body: List<OutLineType>
 )
