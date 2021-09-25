@@ -2,15 +2,13 @@ package com.apripachkin.tuneinbrowser.ui.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apripachkin.tuneinbrowser.data.HeaderOutLine
-import com.apripachkin.tuneinbrowser.data.OutLineType
-import com.apripachkin.tuneinbrowser.data.TuneInResponse
-import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import com.apripachkin.tuneinbrowser.di.modules.Dispatcher
 import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.UiState
+import com.apripachkin.tuneinbrowser.domain.interactor.RemoteServiceInteractor
+import com.apripachkin.tuneinbrowser.domain.models.UiItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.Flow
@@ -21,26 +19,17 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DetailsViewModel @Inject constructor(
-    private val service: TuneInBrowserService,
+    private val interactor: RemoteServiceInteractor,
     @Dispatcher.IO private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val dataFlow = MutableStateFlow<UiState<TuneInResponse>>(Loading)
-    val data: Flow<UiState<TuneInResponse>> = dataFlow
+    private val dataFlow = MutableStateFlow<UiState<Pair<String?, List<UiItem>>>>(Loading)
+    val data: Flow<UiState<Pair<String?,List<UiItem>>>> = dataFlow
     fun loadData(url: String) {
         Timber.d("Loading $url")
         viewModelScope.launch(dispatcher) {
             try {
-                val customUrl = service.customUrl(url)
-                val resultList = mutableListOf<OutLineType>()
-                customUrl.body.forEach {
-                    if (it is HeaderOutLine) {
-                        resultList.add(HeaderOutLine(it.text, it.key, emptyList()))
-                        resultList.addAll(it.children)
-                    } else {
-                        resultList.add(it)
-                    }
-                }
-                dataFlow.emit(Success(customUrl.copy(body = resultList)))
+                val data = interactor.loadRemoteUrl(url)
+                dataFlow.emit(Success(data))
             } catch (e: Exception) {
                 Timber.e(e)
                 dataFlow.emit(Fail)

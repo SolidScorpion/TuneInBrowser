@@ -39,7 +39,7 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             Timber.d("Clicked on $it")
             findNavController(this).navigate(
                 R.id.action_homeFragment_to_detailFragment,
-                bundleOf(DetailFragment.LINK to it.URL)
+                bundleOf(DetailFragment.LINK to it.url)
             )
         }
         binding.homeCategoryPager.setPageTransformer(ZoomOutPageTransformer())

@@ -9,6 +9,8 @@ import com.apripachkin.tuneinbrowser.domain.UiState
 import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
+import com.apripachkin.tuneinbrowser.domain.interactor.RemoteServiceInteractor
+import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,36 +21,23 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeViewModel @Inject constructor(
-    private val service: TuneInBrowserService,
+    private val interactor: RemoteServiceInteractor,
     @Dispatcher.IO private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val currentData = MutableStateFlow<UiState<List<LinkOutLine>>>(Loading)
-    val data: StateFlow<UiState<List<LinkOutLine>>> = currentData
+    private val currentData = MutableStateFlow<UiState<List<LinkItem>>>(Loading)
+    val data: StateFlow<UiState<List<LinkItem>>> = currentData
     init {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         viewModelScope.launch(dispatcher) {
             currentData.emit(Loading)
             try {
-                val basePage = service.basePage()
-                if (basePage.head.status == 200) {
-                    currentData.emit(Success(basePage.body.filterIsInstance<LinkOutLine>()))
-                }
+                val basePage = interactor.loadBasePage()
+                currentData.emit(Success(basePage.filterIsInstance<LinkItem>()))
             } catch (e: Throwable) {
                 currentData.emit(Fail)
-            }
-        }
-    }
-
-    fun fetchResponce(url: String) {
-        viewModelScope.launch(dispatcher) {
-            try {
-                val customUrl = service.customUrl(url)
-                Timber.d("Got responce $customUrl")
-            } catch (e: Exception) {
-                Timber.e(e)
             }
         }
     }

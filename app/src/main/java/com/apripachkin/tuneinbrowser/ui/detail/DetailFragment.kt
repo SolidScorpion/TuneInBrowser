@@ -18,6 +18,10 @@ import com.apripachkin.tuneinbrowser.databinding.DetailFragmentBinding
 import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
+import com.apripachkin.tuneinbrowser.domain.models.AudioItem
+import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
+import com.apripachkin.tuneinbrowser.domain.models.LinkItem
+import com.apripachkin.tuneinbrowser.domain.models.TextItem
 import com.apripachkin.tuneinbrowser.ui.ImageLoader
 import com.apripachkin.tuneinbrowser.ui.MainActivity
 import com.apripachkin.tuneinbrowser.utils.viewBinding
@@ -42,9 +46,10 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
         val outLineItemAdapter = OutLineItemAdapter(imageLoader = imageLoader) {
             Timber.d("Clicked $it")
             val url = when (it) {
-                is AudioOutLine -> it.URL
-                is LinkOutLine -> it.URL
-                is HeaderOutLine, is TextOutLine -> null
+                is AudioItem -> it.url
+                is LinkItem -> it.url
+                is HeaderItem -> it.moreItemsLink
+                is TextItem -> null
             }
             url?.also { link ->
                 findNavController(this).navigate(
@@ -62,9 +67,9 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
                         Fail -> Timber.d("Failed")
                         Loading -> Timber.d("Loading")
                         is Success -> {
-                            val title = it.value.head.title ?: ""
+                            val title = it.value.first ?: ""
                             (requireActivity() as MainActivity).updateTitle(title)
-                            outLineItemAdapter.updateData(it.value.body)
+                            outLineItemAdapter.updateData(it.value.second)
                         }
                     }
                 }

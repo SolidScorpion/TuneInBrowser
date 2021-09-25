@@ -5,26 +5,30 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.apripachkin.tuneinbrowser.R
-import com.apripachkin.tuneinbrowser.data.*
 import com.apripachkin.tuneinbrowser.databinding.AudioItemLayoutBinding
 import com.apripachkin.tuneinbrowser.databinding.HeaderItemLayoutBinding
 import com.apripachkin.tuneinbrowser.databinding.LinkItemLayoutBinding
 import com.apripachkin.tuneinbrowser.databinding.TextItemLayoutBinding
+import com.apripachkin.tuneinbrowser.domain.models.AudioItem
+import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
+import com.apripachkin.tuneinbrowser.domain.models.LinkItem
+import com.apripachkin.tuneinbrowser.domain.models.TextItem
+import com.apripachkin.tuneinbrowser.domain.models.UiItem
 import com.apripachkin.tuneinbrowser.ui.ImageLoader
 
 class OutLineItemAdapter(
-    private val items: MutableList<OutLineType> = mutableListOf(),
+    private val items: MutableList<UiItem> = mutableListOf(),
     private val imageLoader: ImageLoader,
-    private val itemClick: (OutLineType) -> Unit
+    private val itemClick: (UiItem) -> Unit
 ) : RecyclerView.Adapter<OutLineItemAdapter.ViewHolder>() {
 
     class ViewHolder(
         private val binding: ViewBinding,
         private val imageLoader: ImageLoader,
-        itemClick: (OutLineType) -> Unit
+        itemClick: (UiItem) -> Unit
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        private var item: OutLineType? = null
+        private var item: UiItem? = null
 
         init {
             binding.root.setOnClickListener {
@@ -32,28 +36,36 @@ class OutLineItemAdapter(
             }
         }
 
-        fun bind(bindItem: OutLineType) {
+        fun bind(bindItem: UiItem) {
             item = bindItem
             when (bindItem) {
-                is AudioOutLine -> {
+                is AudioItem -> {
                     bindAudioItem(bindItem)
                 }
-                is HeaderOutLine -> {
+                is HeaderItem -> {
                     val headerItemLayoutBinding = binding as HeaderItemLayoutBinding
                     headerItemLayoutBinding.headerItemTv.text = bindItem.text
+                    val drawable =
+                        bindItem.moreItemsLink?.let { R.drawable.ic_baseline_arrow_forward_24 } ?: 0
+                    headerItemLayoutBinding.headerItemTv.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0,
+                        0,
+                        drawable,
+                        0
+                    )
                 }
-                is LinkOutLine -> {
+                is LinkItem -> {
                     val linkItemLayoutBinding = binding as LinkItemLayoutBinding
                     linkItemLayoutBinding.linkItemTv.text = bindItem.text
                 }
-                is TextOutLine -> {
+                is TextItem -> {
                     val textItemLayoutBinding = binding as TextItemLayoutBinding
                     textItemLayoutBinding.textItemTv.text = bindItem.text
                 }
             }
         }
 
-        private fun bindAudioItem(bindItem: AudioOutLine) {
+        private fun bindAudioItem(bindItem: AudioItem) {
             val audioItemLayoutBinding = binding as AudioItemLayoutBinding
             val playingImage = bindItem.image
             imageLoader.loadImageInto(audioItemLayoutBinding.cardImage, playingImage)
@@ -83,7 +95,7 @@ class OutLineItemAdapter(
     }
 
     override fun getItemCount() = items.size
-    fun updateData(body: List<OutLineType>) {
+    fun updateData(body: List<UiItem>) {
         items.clear()
         items.addAll(body)
         notifyItemRangeChanged(0, body.size)

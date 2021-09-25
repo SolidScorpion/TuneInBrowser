@@ -6,30 +6,31 @@ import androidx.recyclerview.widget.RecyclerView
 import com.apripachkin.tuneinbrowser.data.LinkOutLine
 import com.apripachkin.tuneinbrowser.data.OutLineType
 import com.apripachkin.tuneinbrowser.databinding.InitialCategoryCardBinding
+import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 
 class CategoryAdapter(
-    private val items: MutableList<LinkOutLine> = mutableListOf(),
-    private val onClick: (LinkOutLine) -> Unit
+    private val items: MutableList<LinkItem> = mutableListOf(),
+    private val onClick: (LinkItem) -> Unit
 ) :
     RecyclerView.Adapter<CategoryAdapter.ViewHolder>() {
 
     class ViewHolder(
         private val binding: InitialCategoryCardBinding,
-        onClick: (LinkOutLine) -> Unit) :
+        onClick: (LinkItem) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
-        private var item: LinkOutLine? = null
+        private var item: LinkItem? = null
         init {
             binding.root.setOnClickListener {
                 item?.also(onClick)
             }
         }
-        fun bind(outline: LinkOutLine) {
+        fun bind(outline: LinkItem) {
             item = outline
             binding.categoryCardTitle.text = outline.text
         }
     }
 
-    fun updateItems(newItems: List<LinkOutLine>) {
+    fun updateItems(newItems: List<LinkItem>) {
         items.clear()
         items.addAll(newItems)
         notifyItemRangeChanged(0, items.size)
