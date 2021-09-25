@@ -67,9 +67,9 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
                         Fail -> Timber.d("Failed")
                         Loading -> Timber.d("Loading")
                         is Success -> {
-                            val title = it.value.first ?: ""
+                            val title = it.value.title ?: ""
                             (requireActivity() as MainActivity).updateTitle(title)
-                            outLineItemAdapter.updateData(it.value.second)
+                            outLineItemAdapter.updateData(it.value.listItems)
                         }
                     }
                 }

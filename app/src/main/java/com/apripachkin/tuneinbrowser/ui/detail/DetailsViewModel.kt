@@ -8,6 +8,7 @@ import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.UiState
 import com.apripachkin.tuneinbrowser.domain.interactor.RemoteServiceInteractor
+import com.apripachkin.tuneinbrowser.domain.models.UiData
 import com.apripachkin.tuneinbrowser.domain.models.UiItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -22,8 +23,8 @@ class DetailsViewModel @Inject constructor(
     private val interactor: RemoteServiceInteractor,
     @Dispatcher.IO private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private val dataFlow = MutableStateFlow<UiState<Pair<String?, List<UiItem>>>>(Loading)
-    val data: Flow<UiState<Pair<String?,List<UiItem>>>> = dataFlow
+    private val dataFlow = MutableStateFlow<UiState<UiData>>(Loading)
+    val data: Flow<UiState<UiData>> = dataFlow
     fun loadData(url: String) {
         Timber.d("Loading $url")
         viewModelScope.launch(dispatcher) {
