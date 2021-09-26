@@ -25,6 +25,7 @@ object Config {
         const val MOSHI_CONVERTER = "2.9.0"
         const val MOCKK_VERSION = "1.12.0"
         const val COROUTINE_TEST = "1.4.2"
+        const val SWIPE_REFRESH = "1.1.0"
     }
 
     object PluginLibs {
@@ -38,6 +39,7 @@ object Config {
     object AndroidXLibs {
         const val CONSTRAINT_LAYOUT =
             "androidx.constraintlayout:constraintlayout:${Versions.CONSTRAINT_LAYOUT_VERSION}"
+        const val SWIPE_REFRESH = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.SWIPE_REFRESH}"
         const val MATERIAL = "com.google.android.material:material:${Versions.MATERIAL_VERSION}"
         const val APP_COMPAT = "androidx.appcompat:appcompat:${Versions.APP_COMPAT_VERSION}"
         const val ANDROIDX_CORE = "androidx.core:core-ktx:${Versions.ANDROIDX_CORE_VERSION}"
