@@ -22,8 +22,8 @@ object Config {
         const val LEAK_CANARY_VERSION = "2.6"
         const val FRAGMENT_VERSION = "1.3.6"
         const val TIMBER_VERSION = "5.0.1"
-        const val KOTLINX_SERIALIZATION = "1.0.1"
         const val MOSHI_CONVERTER = "2.9.0"
+        const val MOCKK_VERSION = "1.12.0"
     }
 
     object PluginLibs {
@@ -73,5 +73,7 @@ object Config {
         const val ANDROIDX_TEST_EXT = "androidx.test.ext:junit:${Versions.TEST_EXT_VERSION}"
         const val ESPRESSO_CORE =
             "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_VERSION}"
+        const val MOCKK = "io.mockk:mockk:${Versions.MOCKK_VERSION}"
+
     }
 }

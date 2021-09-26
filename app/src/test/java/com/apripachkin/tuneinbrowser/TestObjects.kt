@@ -1,8 +1,13 @@
 package com.apripachkin.tuneinbrowser
 
+import com.apripachkin.tuneinbrowser.data.models.AudioElement
 import com.apripachkin.tuneinbrowser.data.models.AudioOutLine
+import com.apripachkin.tuneinbrowser.data.models.AudioResponse
+import com.apripachkin.tuneinbrowser.data.models.Head
 import com.apripachkin.tuneinbrowser.data.models.HeaderOutLine
 import com.apripachkin.tuneinbrowser.data.models.LinkOutLine
+import com.apripachkin.tuneinbrowser.data.models.TuneInResponse
+import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 
 object TestObjects {
     val sampleAudioOutLine = AudioOutLine(
@@ -27,6 +32,34 @@ object TestObjects {
                 text = "More Stations",
                 URL = "http://opml.radiotime.com/Browse.ashx?offset=26&id=c57944&filter=s",
                 key = "nextStations"
+            )
+        )
+    )
+
+    private val sampleHead = Head("Music", 200)
+    val sampleTuneInResponse = TuneInResponse(
+        sampleHead,
+        listOf(sampleLinkOutline)
+    )
+
+    val sampleLinkItem = LinkItem(sampleLinkOutline.text, sampleLinkOutline.URL)
+
+    val sampleAudioResponse = AudioResponse(
+        sampleHead,
+        listOf(
+            AudioElement(
+                "audio",
+                "someUrl",
+                100,
+                100,
+                "mp3",
+                0,
+                640,
+            640,
+                "true",
+                "someUrl",
+                "1234",
+                true
             )
         )
     )

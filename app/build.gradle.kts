@@ -69,6 +69,7 @@ dependencies {
     implementation (Config.DI.HILT)
     kapt (Config.DI.HILT_COMPILER)
     testImplementation (Config.TestLibs.JUNIT)
+    testImplementation (Config.TestLibs.MOCKK)
     androidTestImplementation (Config.TestLibs.ANDROIDX_TEST_EXT)
     androidTestImplementation (Config.TestLibs.ESPRESSO_CORE)
 }
