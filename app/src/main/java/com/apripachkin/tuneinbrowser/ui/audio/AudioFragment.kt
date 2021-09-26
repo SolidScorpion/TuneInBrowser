@@ -72,20 +72,6 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
                 player?.play()
             }
         }
-        player?.addListener(object : Player.Listener {
-            override fun onPlayerError(error: PlaybackException) {
-                super.onPlayerError(error)
-                setErrorImage()
-            }
-
-            override fun onIsPlayingChanged(isPlaying: Boolean) {
-                super.onIsPlayingChanged(isPlaying)
-                val drawable =
-                    if (isPlaying) R.drawable.exo_ic_pause_circle_filled
-                    else R.drawable.exo_ic_play_circle_filled
-                binding.audioPlayBtn.setImageResource(drawable)
-            }
-        })
     }
 
     private fun setErrorImage() {
@@ -100,6 +86,20 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
     private fun initializePlayer() {
         if (player == null) {
             player = SimpleExoPlayer.Builder(requireContext()).build()
+            player?.addListener(object : Player.Listener {
+                override fun onPlayerError(error: PlaybackException) {
+                    setErrorImage()
+                    super.onPlayerError(error)
+                }
+
+                override fun onIsPlayingChanged(isPlaying: Boolean) {
+                    val drawable =
+                        if (isPlaying) R.drawable.exo_ic_pause_circle_filled
+                        else R.drawable.exo_ic_play_circle_filled
+                    binding.audioPlayBtn.setImageResource(drawable)
+                    super.onIsPlayingChanged(isPlaying)
+                }
+            })
             player?.playWhenReady = true
         }
     }
