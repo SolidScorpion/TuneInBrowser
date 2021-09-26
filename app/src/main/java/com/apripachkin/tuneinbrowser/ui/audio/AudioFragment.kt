@@ -43,7 +43,10 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 audioViewModel.data.collect {
                     when (it) {
-                        Fail -> Timber.d("Failed to load")
+                        Fail -> {
+                            Timber.d("Failed to load")
+                            setErrorImage()
+                        }
                         Loading -> Timber.d("Loading...")
                         is Success -> {
                             player?.playWhenReady = true
@@ -72,7 +75,7 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
         player?.addListener(object : Player.Listener {
             override fun onPlayerError(error: PlaybackException) {
                 super.onPlayerError(error)
-                binding.audioPlayBtn.setImageResource(R.drawable.ic_baseline_image_not_supported_24)
+                setErrorImage()
             }
 
             override fun onIsPlayingChanged(isPlaying: Boolean) {
@@ -83,6 +86,10 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
                 binding.audioPlayBtn.setImageResource(drawable)
             }
         })
+    }
+
+    private fun setErrorImage() {
+        binding.audioPlayBtn.setImageResource(R.drawable.ic_baseline_image_not_supported_24)
     }
 
     override fun onResume() {
