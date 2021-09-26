@@ -1,8 +1,9 @@
 package com.apripachkin.tuneinbrowser.di
 
 import com.apripachkin.tuneinbrowser.data.*
-import com.squareup.moshi.*
-import okio.BufferedSource
+import com.squareup.moshi.JsonAdapter
+import com.squareup.moshi.JsonReader
+import com.squareup.moshi.JsonWriter
 import timber.log.Timber
 
 class OutLineResponseAdapter : JsonAdapter<OutLineType>() {
@@ -13,6 +14,7 @@ class OutLineResponseAdapter : JsonAdapter<OutLineType>() {
         private const val LINK_TYPE = "link"
         private const val AUDIO_TYPE = "audio"
         private val ITEM_TYPES = JsonReader.Options.of(NAME_TYPE_MARKER, HEADER_TYPE_MARKER)
+        private val HEADER_OPTIONS = JsonReader.Options.of(TEXT_TYPE, "key", "children")
     }
 
     override fun fromJson(reader: JsonReader): OutLineType {
@@ -32,10 +34,7 @@ class OutLineResponseAdapter : JsonAdapter<OutLineType>() {
                     result = Result.success(parseHeaderOutline(reader))
                     break
                 }
-                else -> {
-                    peek.skipName()
-                    peek.skipValue()
-                }
+                else -> peek.skip()
             }
         }
         reader.endObject()
@@ -50,21 +49,10 @@ class OutLineResponseAdapter : JsonAdapter<OutLineType>() {
         reader: JsonReader
     ): OutLineType {
         val outline = when (val typeString = peek.nextString()) {
-            LINK_TYPE -> {
-                Timber.d("Detected link marker")
-                parseLinkOutLine(reader)
-            }
-            TEXT_TYPE -> {
-                Timber.d("Detected text type marker")
-                parseTextOutline(reader)
-            }
-            AUDIO_TYPE -> {
-                Timber.d("Detected audio type marker")
-                parseAudioOutLine(reader)
-            }
-            else -> {
-                error("Unknown type $typeString")
-            }
+            LINK_TYPE -> parseLinkOutLine(reader)
+            TEXT_TYPE -> parseTextOutline(reader)
+            AUDIO_TYPE -> parseAudioOutLine(reader)
+            else -> error("Unknown type $typeString")
         }
         return outline
     }
@@ -95,7 +83,7 @@ class OutLineResponseAdapter : JsonAdapter<OutLineType>() {
         )
     }
 
-    private fun readDataIntoMap(reader: JsonReader) : Map<String, String> {
+    private fun readDataIntoMap(reader: JsonReader): Map<String, String> {
         val map = mutableMapOf<String, String>()
         while (reader.hasNext()) {
             map[reader.nextName()] = reader.nextString()
@@ -116,43 +104,46 @@ class OutLineResponseAdapter : JsonAdapter<OutLineType>() {
 
     private fun parseHeaderOutline(reader: JsonReader): HeaderOutLine {
         var text: String? = null
-        var key: String?  = null
+        var key: String? = null
         val mutableListOf = mutableListOf<OutLineType>()
         while (reader.hasNext()) {
-            when (reader.selectName(JsonReader.Options.of("text", "key", "children"))) {
-                0 -> {
-                    text = reader.nextString()
-                }
-                1 -> {
-                    key = reader.nextString()
-                }
-                2 -> {
-                    reader.beginArray()
-                    while (reader.hasNext()) {
-                        reader.beginObject()
-                        val peekJson = reader.peekJson()
-                        while (peekJson.hasNext()) {
-                            if (peekJson.selectName(JsonReader.Options.of(NAME_TYPE_MARKER)) == 0) {
-                               val outline = parseOutLine(peekJson, reader)
-                                mutableListOf.add(outline)
-                            } else {
-                                peekJson.skipName()
-                                peekJson.skipValue()
-                            }
-                        }
-                        reader.endObject()
-                    }
-                    reader.endArray()
-                }
-                else -> {
-                    reader.skipName()
-                    reader.skipValue()
-                }
+            when (reader.selectName(HEADER_OPTIONS)) {
+                0 -> text = reader.nextString()
+                1 -> key = reader.nextString()
+                2 -> parseHeaderContent(reader, mutableListOf)
+                else -> reader.skip()
             }
         }
         return HeaderOutLine(requireNotNull(text), key, mutableListOf)
     }
 
+    private fun parseHeaderContent(
+        reader: JsonReader,
+        mutableListOf: MutableList<OutLineType>
+    ) {
+        reader.beginArray()
+        while (reader.hasNext()) {
+            reader.beginObject()
+            val peekJson = reader.peekJson()
+            val nameIndex = 0
+            while (peekJson.hasNext()) {
+                if (peekJson.selectName(JsonReader.Options.of(NAME_TYPE_MARKER)) == nameIndex) {
+                    mutableListOf.add(parseOutLine(peekJson, reader))
+                } else {
+                    peekJson.skip()
+                }
+            }
+            reader.endObject()
+        }
+        reader.endArray()
+    }
+
     override fun toJson(writer: JsonWriter, value: OutLineType?) {
+        throw UnsupportedOperationException("We don't send anything")
+    }
+
+    private fun JsonReader.skip() {
+        skipName()
+        skipValue()
     }
 }

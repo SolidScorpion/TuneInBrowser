@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/toolbar"
+    android:background="?attr/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize">
 
@@ -17,7 +18,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/primaryColor" />
+        app:tint="?attr/colorOnPrimary" />
 
     <TextView
         android:id="@+id/toolbar_title"
@@ -26,6 +27,7 @@
         android:layout_height="0dp"
         android:layout_gravity="center"
         android:gravity="center"
+        android:textColor="?attr/colorOnPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/toolbar_back_button"

@@ -40,10 +40,4 @@ class DetailsViewModel @Inject constructor(
             }
         }
     }
-    fun loadAudioContent(url: String) {
-        viewModelScope.launch(dispatcher) {
-            val loadAudioUrl = interactor.loadAudioUrl(url)
-            Timber.d("Received audio url: $loadAudioUrl")
-        }
-    }
 }
