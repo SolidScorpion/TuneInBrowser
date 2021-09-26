@@ -26,9 +26,7 @@ class UiItemMapper @Inject constructor() {
 
     private fun convertOutLineToUiItem(outline: OutLineType, resultList: MutableList<UiItem>) {
         when (outline) {
-            is AudioOutLine -> {
-                resultList.add(convertToAudio(outline))
-            }
+            is AudioOutLine -> resultList.add(convertToAudio(outline))
             is HeaderOutLine -> {
                 val partition = outline.children.partition {
                     it is AudioOutLine || isChildLinkItem(it)
@@ -48,12 +46,8 @@ class UiItemMapper @Inject constructor() {
                 resultList.add(HeaderItem(outline.text, (headerOutLine as? LinkOutLine)?.URL))
                 resultList.addAll(mappedItems)
             }
-            is LinkOutLine -> {
-                resultList.add(convertToLink(outline))
-            }
-            is TextOutLine -> {
-                resultList.add(convertToText(outline))
-            }
+            is LinkOutLine -> resultList.add(convertToLink(outline))
+            is TextOutLine -> resultList.add(convertToText(outline))
         }
     }
 

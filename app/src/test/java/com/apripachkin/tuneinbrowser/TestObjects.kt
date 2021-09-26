@@ -6,10 +6,12 @@ import com.apripachkin.tuneinbrowser.data.models.AudioResponse
 import com.apripachkin.tuneinbrowser.data.models.Head
 import com.apripachkin.tuneinbrowser.data.models.HeaderOutLine
 import com.apripachkin.tuneinbrowser.data.models.LinkOutLine
+import com.apripachkin.tuneinbrowser.data.models.TextOutLine
 import com.apripachkin.tuneinbrowser.data.models.TuneInResponse
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 
 object TestObjects {
+    val sampleTextOutLine = TextOutLine("Sample text", "outline","text")
     val sampleAudioOutLine = AudioOutLine(
         "audio",
         "KNKX (Seattle-Tacoma, US)",

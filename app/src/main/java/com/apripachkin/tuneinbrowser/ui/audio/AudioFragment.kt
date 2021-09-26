@@ -50,7 +50,7 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
                         Loading -> Timber.d("Loading...")
                         is Success -> {
                             player?.playWhenReady = true
-                            player?.setMediaItem(MediaItem.fromUri(it.value.url))
+                            player?.setMediaItem(MediaItem.fromUri(it.value))
                             player?.prepare()
                         }
                     }
@@ -64,7 +64,7 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
         binding.audioTitleTv.text = audioItem.text
         val imageUrl = audioItem.playingImage ?: audioItem.image
         imageLoader.loadImageInto(binding.audioCurrentSongImage, imageUrl)
-        audioViewModel.fetchAudioLink(audioItem)
+        audioViewModel.fetchAudioLink(audioItem.url)
         binding.audioPlayBtn.setOnClickListener {
             if (player?.isPlaying == true) {
                 player?.pause()

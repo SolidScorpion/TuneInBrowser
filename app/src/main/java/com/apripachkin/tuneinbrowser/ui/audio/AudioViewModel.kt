@@ -24,17 +24,15 @@ class AudioViewModel @Inject constructor(
     private val remoteServiceInteractor: RemoteServiceInteractor,
     @Dispatcher.IO private val dispatcher: CoroutineDispatcher
 ) : ViewModel() {
-    private lateinit var audioItem: AudioItem
-    private val audioData = MutableStateFlow<UiState<AudioElement>>(Loading)
-    val data: StateFlow<UiState<AudioElement>> = audioData
+    private val audioData = MutableStateFlow<UiState<String>>(Loading)
+    val data: StateFlow<UiState<String>> = audioData
 
-    fun fetchAudioLink(item: AudioItem) {
-        audioItem = item
+    fun fetchAudioLink(url: String) {
         viewModelScope.launch(dispatcher) {
             try {
-                val loadAudioUrl = remoteServiceInteractor.loadAudioUrl(item.url)
+                val loadAudioUrl = remoteServiceInteractor.loadAudioUrl(url)
                 Timber.d("Received audio response: $loadAudioUrl")
-                audioData.emit(Success(loadAudioUrl.body[0]))
+                audioData.emit(Success(loadAudioUrl))
             } catch (e: Exception) {
                 Timber.e(e)
                 audioData.emit(Fail)

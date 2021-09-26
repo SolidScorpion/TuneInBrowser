@@ -38,7 +38,7 @@ class RemoteServiceInteractorImplTest {
         val url = "someUrl"
         val loadAudioUrl = provideInteractor().loadAudioUrl(url)
         coVerify { remoteRepository.loadAudioUrl(url) }
-        assertEquals(loadAudioUrl, TestObjects.sampleAudioResponse)
+        assertEquals(loadAudioUrl, TestObjects.sampleAudioResponse.body[0].url)
     }
 
     private fun provideInteractor() = RemoteServiceInteractorImpl(mapper, remoteRepository)

@@ -1,6 +1,5 @@
 package com.apripachkin.tuneinbrowser.domain.interactor
 
-import com.apripachkin.tuneinbrowser.data.models.AudioResponse
 import com.apripachkin.tuneinbrowser.domain.mapper.UiItemMapper
 import com.apripachkin.tuneinbrowser.domain.models.UiData
 import com.apripachkin.tuneinbrowser.domain.models.UiItem
@@ -10,7 +9,7 @@ import javax.inject.Inject
 interface RemoteServiceInteractor {
     suspend fun loadBasePage(): List<UiItem>
     suspend fun loadRemoteUrl(url: String): UiData
-    suspend fun loadAudioUrl(url: String): AudioResponse
+    suspend fun loadAudioUrl(url: String): String
 }
 
 class RemoteServiceInteractorImpl @Inject constructor(
@@ -28,8 +27,9 @@ class RemoteServiceInteractorImpl @Inject constructor(
         return UiData(head.title, uiItems)
     }
 
-    override suspend fun loadAudioUrl(url: String): AudioResponse {
-        return remoteRepository.loadAudioUrl(url)
+    override suspend fun loadAudioUrl(url: String): String {
+        val loadAudioUrl = remoteRepository.loadAudioUrl(url)
+        return loadAudioUrl.body[0].url
     }
 
 }
