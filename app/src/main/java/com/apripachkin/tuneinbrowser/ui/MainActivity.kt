@@ -29,8 +29,7 @@ class MainActivity : AppCompatActivity() {
             navController.navigateUp()
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            val label = destination.label
-            binding.toolbar.toolbarBackButton.isVisible = label in toolbarVisibleItems
+            binding.toolbar.toolbarBackButton.isVisible = destination.label in toolbarVisibleItems
         }
     }
 
