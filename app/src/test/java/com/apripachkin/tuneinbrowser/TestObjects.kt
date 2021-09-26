@@ -9,6 +9,7 @@ import com.apripachkin.tuneinbrowser.data.models.LinkOutLine
 import com.apripachkin.tuneinbrowser.data.models.TextOutLine
 import com.apripachkin.tuneinbrowser.data.models.TuneInResponse
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
+import com.apripachkin.tuneinbrowser.domain.models.UiData
 
 object TestObjects {
     val sampleTextOutLine = TextOutLine("Sample text", "outline","text")
@@ -45,7 +46,10 @@ object TestObjects {
     )
 
     val sampleLinkItem = LinkItem(sampleLinkOutline.text, sampleLinkOutline.URL)
-
+    val sampleUiData = UiData(
+        "Music",
+        listOf(sampleLinkItem)
+    )
     val sampleAudioResponse = AudioResponse(
         sampleHead,
         listOf(

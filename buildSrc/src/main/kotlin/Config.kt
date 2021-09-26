@@ -24,6 +24,7 @@ object Config {
         const val TIMBER_VERSION = "5.0.1"
         const val MOSHI_CONVERTER = "2.9.0"
         const val MOCKK_VERSION = "1.12.0"
+        const val COROUTINE_TEST = "1.4.2"
     }
 
     object PluginLibs {
@@ -74,6 +75,6 @@ object Config {
         const val ESPRESSO_CORE =
             "androidx.test.espresso:espresso-core:${Versions.ESPRESSO_VERSION}"
         const val MOCKK = "io.mockk:mockk:${Versions.MOCKK_VERSION}"
-
+        const val COROUTINES_TEST = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.COROUTINE_TEST}"
     }
 }

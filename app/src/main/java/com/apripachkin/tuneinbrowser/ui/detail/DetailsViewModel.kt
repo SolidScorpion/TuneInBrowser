@@ -34,7 +34,7 @@ class DetailsViewModel @Inject constructor(
             try {
                 val data = interactor.loadRemoteUrl(url)
                 dataFlow.emit(Success(data))
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
                 Timber.e(e)
                 dataFlow.emit(Fail)
             }

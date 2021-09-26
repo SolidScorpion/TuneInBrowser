@@ -33,7 +33,7 @@ class AudioViewModel @Inject constructor(
                 val loadAudioUrl = remoteServiceInteractor.loadAudioUrl(url)
                 Timber.d("Received audio response: $loadAudioUrl")
                 audioData.emit(Success(loadAudioUrl))
-            } catch (e: Exception) {
+            } catch (e: Throwable) {
                 Timber.e(e)
                 audioData.emit(Fail)
             }
