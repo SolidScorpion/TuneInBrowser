@@ -2,10 +2,10 @@ package com.apripachkin.tuneinbrowser.di.modules
 
 import android.content.Context
 import com.apripachkin.tuneinbrowser.R
-import com.apripachkin.tuneinbrowser.data.OutLineType
+import com.apripachkin.tuneinbrowser.data.models.OutLineType
 import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import com.apripachkin.tuneinbrowser.di.JsonRendererInterceptor
-import com.apripachkin.tuneinbrowser.di.OutLineResponseAdapter
+import com.apripachkin.tuneinbrowser.data.adapter.OutLineResponseAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides

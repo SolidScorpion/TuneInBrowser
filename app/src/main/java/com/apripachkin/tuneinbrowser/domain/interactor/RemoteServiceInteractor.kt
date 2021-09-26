@@ -1,8 +1,7 @@
 package com.apripachkin.tuneinbrowser.domain.interactor
 
-import com.apripachkin.tuneinbrowser.data.AudioResponse
+import com.apripachkin.tuneinbrowser.data.models.AudioResponse
 import com.apripachkin.tuneinbrowser.domain.mapper.UiItemMapper
-import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.UiData
 import com.apripachkin.tuneinbrowser.domain.models.UiItem
 import com.apripachkin.tuneinbrowser.domain.repo.RemoteRepository

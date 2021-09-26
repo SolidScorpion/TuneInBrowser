@@ -3,8 +3,6 @@ package com.apripachkin.tuneinbrowser.ui.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.apripachkin.tuneinbrowser.data.LinkOutLine
-import com.apripachkin.tuneinbrowser.data.OutLineType
 import com.apripachkin.tuneinbrowser.databinding.InitialCategoryCardBinding
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 

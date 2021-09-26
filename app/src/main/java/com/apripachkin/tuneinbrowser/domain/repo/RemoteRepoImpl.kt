@@ -1,6 +1,6 @@
 package com.apripachkin.tuneinbrowser.domain.repo
 
-import com.apripachkin.tuneinbrowser.data.AudioResponse
+import com.apripachkin.tuneinbrowser.data.models.AudioResponse
 import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import javax.inject.Inject
 

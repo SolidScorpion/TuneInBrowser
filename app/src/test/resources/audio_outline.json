@@ -1,0 +1,19 @@
+{
+  "element": "outline",
+  "type": "audio",
+  "text": "KNKX (Seattle-Tacoma, US)",
+  "URL": "http://opml.radiotime.com/Tune.ashx?id=s44526",
+  "bitrate": "128",
+  "reliability": "96",
+  "guide_id": "s44526",
+  "subtext": "Dinah Washington - This Can't Be Love",
+  "genre_id": "g266",
+  "formats": "mp3",
+  "playing": "Dinah Washington - This Can't Be Love",
+  "show_id": "p1002036",
+  "item": "station",
+  "image": "http://cdn-profiles.tunein.com/s44526/images/logoq.png?t=155084",
+  "current_track": "Midday Jazz A.M.",
+  "now_playing_id": "s44526",
+  "preset_id": "s44526"
+}

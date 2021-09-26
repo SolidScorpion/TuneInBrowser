@@ -1,10 +1,10 @@
 package com.apripachkin.tuneinbrowser.domain.mapper
 
-import com.apripachkin.tuneinbrowser.data.AudioOutLine
-import com.apripachkin.tuneinbrowser.data.HeaderOutLine
-import com.apripachkin.tuneinbrowser.data.LinkOutLine
-import com.apripachkin.tuneinbrowser.data.OutLineType
-import com.apripachkin.tuneinbrowser.data.TextOutLine
+import com.apripachkin.tuneinbrowser.data.models.AudioOutLine
+import com.apripachkin.tuneinbrowser.data.models.HeaderOutLine
+import com.apripachkin.tuneinbrowser.data.models.LinkOutLine
+import com.apripachkin.tuneinbrowser.data.models.OutLineType
+import com.apripachkin.tuneinbrowser.data.models.TextOutLine
 import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem

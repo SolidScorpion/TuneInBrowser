@@ -2,8 +2,6 @@ package com.apripachkin.tuneinbrowser.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.apripachkin.tuneinbrowser.data.LinkOutLine
-import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import com.apripachkin.tuneinbrowser.di.modules.Dispatcher
 import com.apripachkin.tuneinbrowser.domain.UiState
 import com.apripachkin.tuneinbrowser.domain.Fail
@@ -16,7 +14,6 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel

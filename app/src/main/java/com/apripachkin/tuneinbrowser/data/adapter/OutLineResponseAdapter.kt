@@ -1,6 +1,10 @@
-package com.apripachkin.tuneinbrowser.di
+package com.apripachkin.tuneinbrowser.data.adapter
 
-import com.apripachkin.tuneinbrowser.data.*
+import com.apripachkin.tuneinbrowser.data.models.AudioOutLine
+import com.apripachkin.tuneinbrowser.data.models.HeaderOutLine
+import com.apripachkin.tuneinbrowser.data.models.LinkOutLine
+import com.apripachkin.tuneinbrowser.data.models.OutLineType
+import com.apripachkin.tuneinbrowser.data.models.TextOutLine
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.JsonReader
 import com.squareup.moshi.JsonWriter

@@ -1,4 +1,4 @@
-package com.apripachkin.tuneinbrowser.data
+package com.apripachkin.tuneinbrowser.data.models
 data class AudioResponse(
     val head: Head,
     val body: List<AudioElement>

@@ -1,7 +1,7 @@
 package com.apripachkin.tuneinbrowser.domain.repo
 
-import com.apripachkin.tuneinbrowser.data.AudioResponse
-import com.apripachkin.tuneinbrowser.data.TuneInResponse
+import com.apripachkin.tuneinbrowser.data.models.AudioResponse
+import com.apripachkin.tuneinbrowser.data.models.TuneInResponse
 
 interface RemoteRepository {
     suspend fun loadBaseData(): TuneInResponse

@@ -10,10 +10,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import com.apripachkin.tuneinbrowser.R
-import com.apripachkin.tuneinbrowser.data.AudioOutLine
-import com.apripachkin.tuneinbrowser.data.HeaderOutLine
-import com.apripachkin.tuneinbrowser.data.LinkOutLine
-import com.apripachkin.tuneinbrowser.data.TextOutLine
 import com.apripachkin.tuneinbrowser.databinding.DetailFragmentBinding
 import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
@@ -21,7 +17,6 @@ import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
-import com.apripachkin.tuneinbrowser.domain.models.TextItem
 import com.apripachkin.tuneinbrowser.ui.ImageLoader
 import com.apripachkin.tuneinbrowser.ui.MainActivity
 import com.apripachkin.tuneinbrowser.ui.audio.AudioFragment
