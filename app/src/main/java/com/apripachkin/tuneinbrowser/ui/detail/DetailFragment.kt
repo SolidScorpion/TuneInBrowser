@@ -17,7 +17,7 @@ import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
-import com.apripachkin.tuneinbrowser.ui.ImageLoader
+import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
 import com.apripachkin.tuneinbrowser.ui.MainActivity
 import com.apripachkin.tuneinbrowser.ui.audio.AudioFragment
 import com.apripachkin.tuneinbrowser.utils.viewBinding
@@ -42,7 +42,7 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
         binding.detailsRefresh.setOnRefreshListener {
             viewModel.loadData(link)
         }
-        val outLineItemAdapter = OutLineItemAdapter(imageLoader = imageLoader) {
+        val outLineItemAdapter = UiItemAdapter(imageLoader = imageLoader) {
             Timber.d("Clicked $it")
             if (it is AudioItem) {
                 findNavController(this).navigate(
@@ -84,7 +84,7 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
                             stopSwipeRefresh()
                             val title = it.value.title ?: ""
                             (requireActivity() as MainActivity).updateTitle(title)
-                            outLineItemAdapter.updateData(it.value.listItems)
+                            outLineItemAdapter.submitList(it.value.listItems)
                         }
                     }
                 }

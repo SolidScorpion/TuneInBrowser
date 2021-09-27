@@ -1,7 +1,6 @@
-package com.apripachkin.tuneinbrowser.ui
+package com.apripachkin.tuneinbrowser.utils.image
 
 import android.widget.ImageView
-import com.apripachkin.tuneinbrowser.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import timber.log.Timber

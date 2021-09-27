@@ -1,7 +1,7 @@
 package com.apripachkin.tuneinbrowser.di.modules
 
-import com.apripachkin.tuneinbrowser.ui.ImageLoader
-import com.apripachkin.tuneinbrowser.ui.ImageLoaderImpl
+import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
+import com.apripachkin.tuneinbrowser.utils.image.ImageLoaderImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

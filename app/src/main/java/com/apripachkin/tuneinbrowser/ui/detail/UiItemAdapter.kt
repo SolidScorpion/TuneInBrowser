@@ -3,6 +3,9 @@ package com.apripachkin.tuneinbrowser.ui.detail
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncDifferConfig
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
 import com.apripachkin.tuneinbrowser.R
@@ -15,13 +18,14 @@ import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 import com.apripachkin.tuneinbrowser.domain.models.TextItem
 import com.apripachkin.tuneinbrowser.domain.models.UiItem
-import com.apripachkin.tuneinbrowser.ui.ImageLoader
+import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
 
-class OutLineItemAdapter(
-    private val items: MutableList<UiItem> = mutableListOf(),
+class UiItemAdapter(
     private val imageLoader: ImageLoader,
     private val itemClick: (UiItem) -> Unit
-) : RecyclerView.Adapter<OutLineItemAdapter.ViewHolder>() {
+) : ListAdapter<UiItem, UiItemAdapter.ViewHolder>(
+    AsyncDifferConfig.Builder(UiItemCallBack()).build()
+) {
 
     class ViewHolder(
         private val binding: ViewBinding,
@@ -76,11 +80,11 @@ class OutLineItemAdapter(
     }
 
     override fun getItemId(position: Int): Long {
-        return items[position].hashCode().toLong()
+        return currentList[position].hashCode().toLong()
     }
 
     override fun getItemViewType(position: Int): Int {
-        return items[position].itemId
+        return currentList[position].itemId
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -96,15 +100,9 @@ class OutLineItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(currentList[position])
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = currentList.size
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateData(body: List<UiItem>) {
-        items.clear()
-        items.addAll(body)
-        notifyDataSetChanged()
-    }
 }

@@ -13,7 +13,7 @@ import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.models.AudioItem
-import com.apripachkin.tuneinbrowser.ui.ImageLoader
+import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
 import com.apripachkin.tuneinbrowser.utils.viewBinding
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.PlaybackException

@@ -1,4 +1,4 @@
-package com.apripachkin.tuneinbrowser.ui
+package com.apripachkin.tuneinbrowser.utils.image
 
 import android.widget.ImageView
 
