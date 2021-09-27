@@ -4,14 +4,14 @@ Home Assignment Task
 This is my take on TuneIn home assignment.
 Project features:
 - MVVM
-- StateFlow for wrapped UI responce (with a small hack - see comments in code)
+- StateFlow for wrapped UI response (with a small hack - see comments in code)
 - Dependency Injection using Hilt
 - Gradle Build script files using kotlin
-- Retrofit for networking and custom Moshi adapter for parsing responce from api
+- Retrofit for networking and custom Moshi adapter for parsing response from api
 - Unit tests for logic layers (viewmodels, repos, interactors, mapper, adapter)
 - Audio streaming using ExoPlayer (what else ?)
 - Navigation component for fragment navigation
-- Single activity architechture
+- Single activity architecture
 - Coroutines
 
 What could have been done to make current project better:
@@ -23,7 +23,7 @@ What could have been done to make current project better:
 - Introduce some kind of local database caching 'cause at the moment everything is fetched from network every time user is entering screen
 - More granual error handling 
 
-Overall it was an interesting expirience, and long time since I made something in short period of time. And I guess this is the best I can do at the moment, giving that I wrote this while on "vacation" visiting relatives with a todler by my side.
+Overall it was an interesting experience, and long time since I made something in short period of time. And I guess this is the best I can do at the moment, giving that I wrote this while on "vacation" visiting relatives with a toddler by my side.
 To complicate things - this could have been done using vanilla android components (no open source libs), but who does that at the moment?
 
 Hope you don't swear too much when reviewing the code
