@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 import com.apripachkin.tuneinbrowser.ui.MainActivity
+import com.apripachkin.tuneinbrowser.ui.MainActivityViewModel
 import com.apripachkin.tuneinbrowser.ui.audio.AudioFragment
 import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
 import com.apripachkin.tuneinbrowser.utils.viewBinding
@@ -31,6 +33,7 @@ import javax.inject.Inject
 class DetailFragment : Fragment(R.layout.detail_fragment) {
     private val binding by viewBinding(DetailFragmentBinding::bind)
     private val viewModel: DetailsViewModel by viewModels()
+    private val mainViewModel: MainActivityViewModel by activityViewModels()
 
     @Inject
     lateinit var imageLoader: ImageLoader
@@ -85,7 +88,7 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
                         is Success -> {
                             stopSwipeRefresh()
                             val title = it.value.title ?: ""
-                            (requireActivity() as MainActivity).updateTitle(title)
+                            mainViewModel.updateTitle(title)
                             outLineItemAdapter.submitList(it.value.listItems)
                         }
                     }

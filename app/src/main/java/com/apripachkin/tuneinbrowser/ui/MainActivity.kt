@@ -1,14 +1,15 @@
 package com.apripachkin.tuneinbrowser.ui
 
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import com.apripachkin.tuneinbrowser.R
 import com.apripachkin.tuneinbrowser.databinding.ActivityMainBinding
-import com.apripachkin.tuneinbrowser.ui.audio.AudioFragment
-import com.apripachkin.tuneinbrowser.ui.detail.DetailFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -18,8 +19,8 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.main_activity_fragment_container)
                 as NavHostFragment
             ).navController
-    private val toolbarVisibleItems =
-        listOf(DetailFragment::class.java.simpleName, AudioFragment::class.java.simpleName)
+    private val toolbarVisibleItems = listOf(R.id.detailFragment, R.id.audioFragment)
+    private val viewModel: MainActivityViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.Theme_TuneInLight)
@@ -31,11 +32,12 @@ class MainActivity : AppCompatActivity() {
             navController.navigateUp()
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            binding.toolbar.toolbarBackButton.isVisible = destination.label in toolbarVisibleItems
+            binding.toolbar.toolbarBackButton.isVisible = destination.id in toolbarVisibleItems
         }
-    }
-
-    fun updateTitle(title: String) {
-        binding.toolbar.toolbarTitle.text = title
+        lifecycleScope.launchWhenStarted {
+            viewModel.titleFlow.collect {
+                binding.toolbar.toolbarTitle.text = it
+            }
+        }
     }
 }

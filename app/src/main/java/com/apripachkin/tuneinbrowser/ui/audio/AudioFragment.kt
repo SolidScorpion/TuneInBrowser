@@ -3,6 +3,7 @@ package com.apripachkin.tuneinbrowser.ui.audio
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -13,6 +14,7 @@ import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.models.AudioItem
+import com.apripachkin.tuneinbrowser.ui.MainActivityViewModel
 import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
 import com.apripachkin.tuneinbrowser.utils.viewBinding
 import com.google.android.exoplayer2.MediaItem
@@ -29,6 +31,7 @@ import javax.inject.Inject
 class AudioFragment : Fragment(R.layout.audio_fragment) {
     private val binding: AudioFragmentBinding by viewBinding(AudioFragmentBinding::bind)
     private val audioViewModel: AudioViewModel by viewModels()
+    private val mainViewModel: MainActivityViewModel by activityViewModels()
 
     @Inject
     lateinit var imageLoader: ImageLoader

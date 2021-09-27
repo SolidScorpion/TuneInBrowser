@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +16,7 @@ import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.ui.MainActivity
+import com.apripachkin.tuneinbrowser.ui.MainActivityViewModel
 import com.apripachkin.tuneinbrowser.ui.detail.DetailFragment
 import com.apripachkin.tuneinbrowser.utils.viewBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -27,11 +29,13 @@ import timber.log.Timber
 class HomeFragment : Fragment(R.layout.home_fragment) {
 
     private val viewModel: HomeViewModel by viewModels()
+    private val mainViewModel: MainActivityViewModel by activityViewModels()
     private val binding: HomeFragmentBinding by viewBinding(HomeFragmentBinding::bind)
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (activity as? MainActivity)?.updateTitle(getString(R.string.home_screen_title))
+        mainViewModel.updateTitle(getString(R.string.home_screen_title))
         binding.homeCategoryPager.adapter = CategoryAdapter {
             Timber.d("Clicked on $it")
             findNavController(this).navigate(
