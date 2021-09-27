@@ -23,6 +23,7 @@ What could have been done to make current project better:
 - Make separate gradle modules for domain and data packages to show that I at least know about this, but I thought that this is a simple test task and might be an overkill (remember: KISS)
 - Introduce some kind of local database caching 'cause at the moment everything is fetched from network every time user is entering screen
 - More granual error handling 
+- Sorting incoming content
 
 Overall it was an interesting experience, and long time since I made something in short period of time. And I guess this is the best I can do at the moment, giving that I wrote this while on "vacation" visiting relatives with a toddler by my side.
 To complicate things - this could have been done using vanilla android components (no open source libs), but who does that at the moment?
