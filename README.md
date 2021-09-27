@@ -13,6 +13,7 @@ Project features:
 - Navigation component for fragment navigation
 - Single activity architecture
 - Coroutines
+- KtLint
 
 What could have been done to make current project better:
 - UI tests
