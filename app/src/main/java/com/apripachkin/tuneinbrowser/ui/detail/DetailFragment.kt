@@ -18,7 +18,6 @@ import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
-import com.apripachkin.tuneinbrowser.ui.MainActivity
 import com.apripachkin.tuneinbrowser.ui.MainActivityViewModel
 import com.apripachkin.tuneinbrowser.ui.audio.AudioFragment
 import com.apripachkin.tuneinbrowser.utils.image.ImageLoader

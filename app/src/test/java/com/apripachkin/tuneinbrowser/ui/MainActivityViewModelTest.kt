@@ -9,7 +9,6 @@ import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
 import kotlinx.coroutines.test.setMain
 import org.junit.After
-import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
 
@@ -38,6 +37,5 @@ class MainActivityViewModelTest {
             }
         }
         job.cancel()
-
     }
 }

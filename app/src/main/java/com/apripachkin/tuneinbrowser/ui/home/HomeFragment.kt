@@ -15,7 +15,6 @@ import com.apripachkin.tuneinbrowser.databinding.HomeFragmentBinding
 import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
-import com.apripachkin.tuneinbrowser.ui.MainActivity
 import com.apripachkin.tuneinbrowser.ui.MainActivityViewModel
 import com.apripachkin.tuneinbrowser.ui.detail.DetailFragment
 import com.apripachkin.tuneinbrowser.utils.viewBinding
@@ -31,7 +30,6 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
     private val viewModel: HomeViewModel by viewModels()
     private val mainViewModel: MainActivityViewModel by activityViewModels()
     private val binding: HomeFragmentBinding by viewBinding(HomeFragmentBinding::bind)
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

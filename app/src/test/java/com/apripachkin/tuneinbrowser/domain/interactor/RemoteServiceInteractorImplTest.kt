@@ -7,8 +7,8 @@ import com.apripachkin.tuneinbrowser.domain.repo.RemoteRepository
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
+import junit.framework.TestCase.assertEquals
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
 import org.junit.Test
 
 class RemoteServiceInteractorImplTest {
