@@ -6,8 +6,8 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withC
 import timber.log.Timber
 import javax.inject.Inject
 
-class ImageLoaderImpl @Inject constructor(): ImageLoader {
-    override fun loadImageInto(imageView: ImageView, url: String) {
+class ImageLoaderImpl @Inject constructor() : ImageLoader {
+    override fun loadImage(imageView: ImageView, url: String) {
         Timber.d("loading $url")
         Glide.with(imageView)
             .load(url)
@@ -15,7 +15,7 @@ class ImageLoaderImpl @Inject constructor(): ImageLoader {
             .into(imageView)
     }
 
-    override fun clearImageView(imageView: ImageView) {
+    override fun clearImage(imageView: ImageView) {
         Glide.with(imageView).clear(imageView)
     }
 }

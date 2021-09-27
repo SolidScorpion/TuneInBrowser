@@ -1,10 +1,8 @@
 package com.apripachkin.tuneinbrowser.ui.detail
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncDifferConfig
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
@@ -73,7 +71,7 @@ class UiItemAdapter(
         private fun bindAudioItem(bindItem: AudioItem) {
             val audioItemLayoutBinding = binding as AudioItemLayoutBinding
             val playingImage = bindItem.image
-            imageLoader.loadImageInto(audioItemLayoutBinding.cardImage, playingImage)
+            imageLoader.loadImage(audioItemLayoutBinding.cardImage, playingImage)
             audioItemLayoutBinding.audioItemHeaderTv.text = bindItem.text
             audioItemLayoutBinding.audioItemSubHeaderTv.text = bindItem.playing
         }
@@ -104,5 +102,4 @@ class UiItemAdapter(
     }
 
     override fun getItemCount() = currentList.size
-
 }

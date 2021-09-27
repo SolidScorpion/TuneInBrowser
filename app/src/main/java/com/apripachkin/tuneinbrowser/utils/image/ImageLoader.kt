@@ -7,6 +7,6 @@ import android.widget.ImageView
  * loading libraries
  */
 interface ImageLoader {
-    fun loadImageInto(imageView: ImageView, url: String)
-    fun clearImageView(imageView: ImageView)
+    fun loadImage(imageView: ImageView, url: String)
+    fun clearImage(imageView: ImageView)
 }

@@ -6,8 +6,6 @@ import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 import com.apripachkin.tuneinbrowser.domain.models.TextItem
-import org.junit.Assert.*
-
 import org.junit.Test
 
 class UiItemMapperTest {

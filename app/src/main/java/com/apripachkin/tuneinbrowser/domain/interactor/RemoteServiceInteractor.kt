@@ -48,5 +48,4 @@ class RemoteServiceInteractorImpl @Inject constructor(
         val loadAudioUrl = remoteRepository.loadAudioUrl(url)
         return loadAudioUrl.body[0].url
     }
-
 }

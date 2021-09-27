@@ -9,14 +9,10 @@ import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.UiState
 import com.apripachkin.tuneinbrowser.domain.interactor.RemoteServiceInteractor
 import com.apripachkin.tuneinbrowser.domain.models.UiData
-import com.apripachkin.tuneinbrowser.domain.models.UiItem
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.consumeAsFlow
-import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject

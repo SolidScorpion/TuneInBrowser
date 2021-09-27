@@ -14,8 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val navController
-        get() = (supportFragmentManager.findFragmentById(R.id.main_activity_fragment_container)
-                as NavHostFragment).navController
+        get() = (
+            supportFragmentManager.findFragmentById(R.id.main_activity_fragment_container)
+                as NavHostFragment
+            ).navController
     private val toolbarVisibleItems =
         listOf(DetailFragment::class.java.simpleName, AudioFragment::class.java.simpleName)
 

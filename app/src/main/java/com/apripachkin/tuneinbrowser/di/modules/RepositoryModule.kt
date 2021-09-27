@@ -1,6 +1,6 @@
 package com.apripachkin.tuneinbrowser.di.modules
 
-import com.apripachkin.tuneinbrowser.domain.repo.RemoteRepoImpl
+import com.apripachkin.tuneinbrowser.data.repo.RemoteRepoImpl
 import com.apripachkin.tuneinbrowser.domain.repo.RemoteRepository
 import dagger.Binds
 import dagger.Module

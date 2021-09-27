@@ -2,10 +2,10 @@ package com.apripachkin.tuneinbrowser.di.modules
 
 import android.content.Context
 import com.apripachkin.tuneinbrowser.R
+import com.apripachkin.tuneinbrowser.data.adapter.OutLineResponseAdapter
 import com.apripachkin.tuneinbrowser.data.models.OutLineType
 import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import com.apripachkin.tuneinbrowser.di.JsonRendererInterceptor
-import com.apripachkin.tuneinbrowser.data.adapter.OutLineResponseAdapter
 import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
@@ -28,9 +28,11 @@ object NetworkModule {
     ): TuneInBrowserService {
         return Retrofit.Builder()
             .client(okHttpClient)
-            .addConverterFactory(MoshiConverterFactory.create(
-                Moshi.Builder().add(OutLineType::class.java, OutLineResponseAdapter()).build()
-            ))
+            .addConverterFactory(
+                MoshiConverterFactory.create(
+                    Moshi.Builder().add(OutLineType::class.java, OutLineResponseAdapter()).build()
+                )
+            )
             .baseUrl(context.getString(R.string.base_url))
             .build()
             .create(TuneInBrowserService::class.java)

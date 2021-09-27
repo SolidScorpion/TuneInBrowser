@@ -3,10 +3,10 @@ package com.apripachkin.tuneinbrowser.ui.home
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.apripachkin.tuneinbrowser.di.modules.Dispatcher
-import com.apripachkin.tuneinbrowser.domain.UiState
 import com.apripachkin.tuneinbrowser.domain.Fail
 import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
+import com.apripachkin.tuneinbrowser.domain.UiState
 import com.apripachkin.tuneinbrowser.domain.interactor.RemoteServiceInteractor
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 import dagger.hilt.android.lifecycle.HiltViewModel

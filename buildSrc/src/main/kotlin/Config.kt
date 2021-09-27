@@ -26,6 +26,7 @@ object Config {
         const val MOCKK_VERSION = "1.12.0"
         const val COROUTINE_TEST = "1.4.2"
         const val SWIPE_REFRESH = "1.1.0"
+        const val KTLINT_VERSION = "10.2.0"
     }
 
     object PluginLibs {
@@ -34,6 +35,7 @@ object Config {
             "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.KOTLIN_VERSION}"
         const val HILT_GRADLE_PLUGIN =
             "com.google.dagger:hilt-android-gradle-plugin:${Versions.HILT_VERSION}"
+        const val KTLINT = "org.jlleitschuh.gradle:ktlint-gradle:${Versions.KTLINT_VERSION}"
     }
 
     object AndroidXLibs {

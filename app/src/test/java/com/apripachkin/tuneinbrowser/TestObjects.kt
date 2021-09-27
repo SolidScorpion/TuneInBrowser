@@ -12,7 +12,7 @@ import com.apripachkin.tuneinbrowser.domain.models.LinkItem
 import com.apripachkin.tuneinbrowser.domain.models.UiData
 
 object TestObjects {
-    val sampleTextOutLine = TextOutLine("Sample text", "outline","text")
+    val sampleTextOutLine = TextOutLine("Sample text", "outline", "text")
     val sampleAudioOutLine = AudioOutLine(
         "audio",
         "KNKX (Seattle-Tacoma, US)",
@@ -29,7 +29,8 @@ object TestObjects {
     val sampleLinkOutline =
         LinkOutLine("link", "World Music", "http://opml.radiotime.com/Browse.ashx?id=g22")
     val sampleHeaderOutLine = HeaderOutLine(
-        "Stations", "stations", listOf(
+        "Stations", "stations",
+        listOf(
             sampleAudioOutLine,
             sampleLinkOutline.copy(
                 text = "More Stations",
@@ -38,8 +39,8 @@ object TestObjects {
             )
         )
     )
+    val sampleHead = Head("Music", 200)
 
-    private val sampleHead = Head("Music", 200)
     val sampleTuneInResponse = TuneInResponse(
         sampleHead,
         listOf(sampleLinkOutline)
@@ -61,7 +62,7 @@ object TestObjects {
                 "mp3",
                 0,
                 640,
-            640,
+                640,
                 "true",
                 "someUrl",
                 "1234",

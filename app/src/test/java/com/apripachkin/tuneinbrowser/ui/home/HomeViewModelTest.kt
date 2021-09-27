@@ -2,7 +2,6 @@ package com.apripachkin.tuneinbrowser.ui.home
 
 import com.apripachkin.tuneinbrowser.TestObjects
 import com.apripachkin.tuneinbrowser.domain.Fail
-import com.apripachkin.tuneinbrowser.domain.Loading
 import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.interactor.RemoteServiceInteractor
 import io.mockk.coEvery

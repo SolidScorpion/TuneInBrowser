@@ -30,4 +30,3 @@ data class HeaderOutLine(
     val key: String? = null,
     val children: List<OutLineType>
 ) : OutLineType()
-

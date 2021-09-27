@@ -1,8 +1,9 @@
-package com.apripachkin.tuneinbrowser.domain.repo
+package com.apripachkin.tuneinbrowser.data.repo
 
 import com.apripachkin.tuneinbrowser.data.models.AudioResponse
 import com.apripachkin.tuneinbrowser.data.models.TuneInResponse
 import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
+import com.apripachkin.tuneinbrowser.domain.repo.RemoteRepository
 import javax.inject.Inject
 
 class RemoteRepoImpl @Inject constructor(

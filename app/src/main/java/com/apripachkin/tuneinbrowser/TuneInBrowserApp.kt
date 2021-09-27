@@ -3,12 +3,12 @@ package com.apripachkin.tuneinbrowser
 import android.app.Application
 import android.os.StrictMode
 import dagger.hilt.android.HiltAndroidApp
-
 import timber.log.Timber
 
 @HiltAndroidApp
 class TuneInBrowserApp : Application() {
     override fun onCreate() {
+        super.onCreate()
         if (BuildConfig.DEBUG) {
             StrictMode.setThreadPolicy(
                 StrictMode.ThreadPolicy.Builder()
@@ -27,6 +27,5 @@ class TuneInBrowserApp : Application() {
             )
             Timber.plant(Timber.DebugTree())
         }
-        super.onCreate()
     }
 }

@@ -7,7 +7,7 @@ import retrofit2.http.Url
 
 interface TuneInBrowserService {
     @GET("/")
-    suspend fun basePage() : TuneInResponse
+    suspend fun basePage(): TuneInResponse
 
     @GET
     suspend fun customUrl(@Url endpoint: String): TuneInResponse

@@ -3,15 +3,12 @@ package com.apripachkin.tuneinbrowser.ui.home
 import android.os.Bundle
 import android.view.View
 import androidx.core.os.bundleOf
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment.findNavController
-import androidx.recyclerview.widget.RecyclerView
 import com.apripachkin.tuneinbrowser.R
 import com.apripachkin.tuneinbrowser.databinding.HomeFragmentBinding
 import com.apripachkin.tuneinbrowser.domain.Fail
@@ -60,5 +57,4 @@ class HomeFragment : Fragment(R.layout.home_fragment) {
             }
         }
     }
-
 }

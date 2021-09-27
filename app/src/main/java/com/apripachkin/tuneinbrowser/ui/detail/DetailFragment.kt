@@ -17,9 +17,9 @@ import com.apripachkin.tuneinbrowser.domain.Success
 import com.apripachkin.tuneinbrowser.domain.models.AudioItem
 import com.apripachkin.tuneinbrowser.domain.models.HeaderItem
 import com.apripachkin.tuneinbrowser.domain.models.LinkItem
-import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
 import com.apripachkin.tuneinbrowser.ui.MainActivity
 import com.apripachkin.tuneinbrowser.ui.audio.AudioFragment
+import com.apripachkin.tuneinbrowser.utils.image.ImageLoader
 import com.apripachkin.tuneinbrowser.utils.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -46,7 +46,8 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
             Timber.d("Clicked $it")
             if (it is AudioItem) {
                 findNavController(this).navigate(
-                    R.id.action_detailFragment_to_audioFragment, bundleOf(
+                    R.id.action_detailFragment_to_audioFragment,
+                    bundleOf(
                         AudioFragment.AUDIO_LINK to it
                     )
                 )
@@ -58,7 +59,8 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
                 }
                 url?.also { link ->
                     findNavController(this).navigate(
-                        R.id.action_global_detailFragment, bundleOf(
+                        R.id.action_global_detailFragment,
+                        bundleOf(
                             LINK to link
                         )
                     )
@@ -90,7 +92,6 @@ class DetailFragment : Fragment(R.layout.detail_fragment) {
                 }
             }
         }
-
     }
     private fun stopSwipeRefresh() {
         if (binding.detailsRefresh.isRefreshing) {

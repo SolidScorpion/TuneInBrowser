@@ -1,10 +1,10 @@
 package com.apripachkin.tuneinbrowser.domain.repo
 
+import com.apripachkin.tuneinbrowser.data.repo.RemoteRepoImpl
 import com.apripachkin.tuneinbrowser.data.service.TuneInBrowserService
 import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.runBlocking
-import org.junit.Assert.*
 import org.junit.Test
 
 class RemoteRepoImplTest {

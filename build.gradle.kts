@@ -3,11 +3,15 @@ buildscript {
     repositories {
         google()
         mavenCentral()
+        repositories {
+            maven("https://plugins.gradle.org/m2/")
+        }
     }
     dependencies {
         classpath(Config.PluginLibs.KOTLIN_GRADLE_PLUGIN)
         classpath(Config.PluginLibs.GRADLE)
         classpath(Config.PluginLibs.HILT_GRADLE_PLUGIN)
+        classpath(Config.PluginLibs.KTLINT)
     }
 }
 

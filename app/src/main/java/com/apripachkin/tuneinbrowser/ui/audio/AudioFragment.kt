@@ -63,7 +63,7 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
         binding.audioNowPlaying.text = audioItem.subText
         binding.audioTitleTv.text = audioItem.text
         val imageUrl = audioItem.playingImage ?: audioItem.image
-        imageLoader.loadImageInto(binding.audioCurrentSongImage, imageUrl)
+        imageLoader.loadImage(binding.audioCurrentSongImage, imageUrl)
         audioViewModel.fetchAudioLink(audioItem.url)
         binding.audioPlayBtn.setOnClickListener {
             if (player?.isPlaying == true) {
@@ -105,8 +105,8 @@ class AudioFragment : Fragment(R.layout.audio_fragment) {
     }
 
     override fun onStop() {
-        super.onStop()
         releasePlayer()
+        super.onStop()
     }
 
     private fun releasePlayer() {

@@ -14,7 +14,8 @@ class CategoryAdapter(
 
     class ViewHolder(
         private val binding: InitialCategoryCardBinding,
-        onClick: (LinkItem) -> Unit) :
+        onClick: (LinkItem) -> Unit
+    ) :
         RecyclerView.ViewHolder(binding.root) {
         private var item: LinkItem? = null
         init {
