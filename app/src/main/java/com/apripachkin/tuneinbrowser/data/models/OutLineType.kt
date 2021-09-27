@@ -20,7 +20,7 @@ data class AudioOutLine(
     val subtext: String,
     val formats: String?,
     val playing: String?,
-    val playing_image: String?,
+    val playingImage: String?,
     val item: String?,
     val image: String
 ) : OutLineType()

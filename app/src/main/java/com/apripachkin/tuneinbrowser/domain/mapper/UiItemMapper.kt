@@ -60,7 +60,7 @@ class UiItemMapper @Inject constructor() {
         outline.URL,
         outline.subtext,
         outline.playing,
-        outline.playing_image,
+        outline.playingImage,
         outline.image
     )
 

@@ -1,4 +1,4 @@
-package com.apripachkin.tuneinbrowser.di
+package com.apripachkin.tuneinbrowser.data.service
 
 import okhttp3.Interceptor
 import okhttp3.Response
